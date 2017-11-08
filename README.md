@@ -1,6 +1,6 @@
-# lojasvirtuais
+# Blog pessoal
 
-> loja virtuais 
+> blog pessoal
 
 ## Build Setup
 
@@ -8,7 +8,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8000
 npm run dev
 
 # build for production with minification
@@ -28,3 +28,4 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Tambem esta presente na aplicacao o #vuex
