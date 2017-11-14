@@ -13,10 +13,10 @@
       </address>
     </div>
     <div class="col-lg-12">
-      <div>
       <hr/>
-        <img src='../../../assets/logo.png' alt='mapa do google' title='mapa google' class='center-block img-responsive img-rounded' />
-      </div>
+        <div>
+          <img src='../../../assets/logo.png' alt='mapa do google' title='mapa google' class='center-block img-responsive img-rounded' />
+        </div>
       <hr/>
     </div>
   </div>

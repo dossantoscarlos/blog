@@ -1,6 +1,14 @@
 <template>
   <div>
-    Sou varios posts
+    <div class="container">
+      todos os post
+    </div>
+    <div class="container">
+      <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="#">&raquo;</a></li>
+      </ul>
+    </div>
   </div>
 </template>
 <script>

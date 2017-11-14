@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Posts from '@/components/layout/Posts/Posts'
 import Blog from '@/components/layout/Body/Blog'
 import Post from '@/components/layout/Body/Post'
 import Portifolio from '@/components/layout/Body/Portifolio'
@@ -18,10 +19,10 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
-      redirect: 'blog',
+      redirect: 'destaque da semana',
       children: [
         {
-          path: '/blog',
+          path: '/destaque da semana',
           name: 'home.blog',
           component: Blog
         },
@@ -45,11 +46,17 @@ export default new Router({
           name: 'home.post',
           component: Post,
           props: true
+        },
+        {
+          path: '/posts/',
+          name: 'home.posts',
+          component: Posts,
+          props: true
         }
       ]
     }
   ],
   mode: 'history',
-  linkActiveClass: 'Active-page',
-  linkExactActiveClass: 'current-page'
+  linkActiveClass: 'router-link-active',
+  linkExactActiveClass: 'router-link-exact-active'
 })

@@ -1,15 +1,14 @@
 <template>
-  <section class="col-lg-10 col-lg-push-2">
-      <header class="col-lg-10 center-block">
+  <section class="col-lg-10 col-lg-push-2" >
+    <div v-for='(value, index) in posts'>
+      <header class="col-lg-10 center-block" >
         <figure class="figure">
           <img src="../../../assets/php.jpg" class="img-fluid img-responsive" alt="...">
-          <figcaption class="figure-caption text-muted"><b>Foto: {{ titulo }}</b></figcaption>
+          <figcaption class="figure-caption text-muted"><b>Foto: {{ value['titulo'] }}</b></figcaption>
           <div class="text-muted">
-            <b>
-              Dia da postagem: {{ dataPostagem }}<br/>
-              Hora da postagem:{{ datas }}<br/>
-              Autor: {{ autor }}<br/>
-            </b>
+            <b>Dia da postagem: {{ value['dataPostagem'] }} <br/>
+              Hora da postagem: {{ value['hora'] }} <br/>
+              Autor: {{ value['autor'] }}<br/></b>
           </div>
         </figure>
       </header>
@@ -17,45 +16,56 @@
         <dl>
           <dt class="col-lg-10">
             <h2 class="text-center">
-              <b>{{ titulo.toUpperCase() }}</b>
+              <b>{{ maiuscula(value['titulo'])}}</b>
               <hr/>
             </h2>
           </dt>
           <dd class="text-justify col-lg-10" >
             <p v-for='n in 5' class="col-lg-12">
-              {{ post }}
+              {{ value['publicacao'] }}
             </p>
+            <Video titulo='post' />
         </dd>
         </dl>
       </article>
       <!-- 0800 7212054
       www.paguefacil.com.br
       parcela 177 / 200 / -->
+
       <div class="col-lg-12 " id='voltar'>
         <router-link :to="{ name: 'home.blog'}" class="col-lg-2 col-lg-push-4 btn btn-lg btn-primary">
           Voltar...</router-link>
       </div>
-    </section>
+    </div>
+  </section>
 </template>
 <script>
-const dataMes = new Date()
-let hora = dataMes.getHours() + ':' + dataMes.getMinutes()
+import { postsRef } from '@/firebase'
+import Video from '@/components/layout/widgets/Video'
 export default {
-  props: {
-    titulo: {
-      default: null
-    },
-    id: {
-      default: null
-    }
-  },
+  props: [ 'titulo', 'id' ],
   name: 'Post',
+  components: { Video },
   data: () => {
     return {
-      post: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      dataPostagem: '23/11/2300',
-      autor: 'Carlos Eduardo',
-      datas: hora
+      rotulo: 'Heroku',
+      dataPostagem: '233o3',
+      horaPostagem: '2333232',
+      autor: 'casdadada',
+      postagem: 'adadadada'
+    }
+  },
+  firebase: {
+    posts: postsRef
+  },
+  methods: {
+    dbPostagem () {
+      postsRef.orderByChild('2232331').equalTo('heroku').on('value', function (snapshot) {
+        console.log(snapshot.val())
+      })
+    },
+    maiuscula (valor) {
+      return valor.toUpperCase()
     }
   }
 }

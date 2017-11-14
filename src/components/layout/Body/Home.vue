@@ -9,7 +9,7 @@
     <div class="footer-central">
         <div class="container footer-one">
             <div class='col-xs-12 col-lg-12 text-center'>
-              <h5><b class='color'>{{text}}</b></h5>
+              <h5><b class='color'>{{ text }}</b></h5>
             </div>
         </div>
       </div>

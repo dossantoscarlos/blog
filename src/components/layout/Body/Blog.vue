@@ -15,11 +15,10 @@
           <dl>
             <dt>Hospedando site no heroku</dt>
             <dd>
-              <div>
-                <p>Veja como hospedar seu site na heroku.com passo a passo</p>
-                <router-link :to="{ name: 'home.post', params: { titulo: 'hospedando site no heroku', id: 1  }}" type='submit' class="btn btn-success">Veja mais</router-link>
-                <button type="submit" class='btn btn-default' v-on:click='log(itens.index)'>Console</button>
-              </div>
+              <p>Veja como hospedar seu site na heroku.com passo a passo</p>
+              <router-link
+                :to="{ name: 'home.post', params: { titulo: 'hospedando site no heroku', id: 1  }}"
+                 type='submit' class="btn btn-success borderButton" >Veja mais</router-link>
             </dd>
           </dl>
         </article>
@@ -34,19 +33,15 @@ export default {
     return {
       titulo: 'imagem',
       Item: [
-        { key: 1 },
-        { key: 2 },
-        { key: 3 },
-        { key: 4 },
-        { key: 5 },
-        { key: 6 }
+        { key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }
       ]
-    }
-  },
-  methods: {
-    log: (src) => {
-      console.log(src)
     }
   }
 }
 </script>
+<style>
+  .borderButton{
+    border: 0;
+    border-color: none
+  }
+</style>

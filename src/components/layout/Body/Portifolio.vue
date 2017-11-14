@@ -3,7 +3,7 @@
     <div class="col-lg-6">
     <Slide />
       <dl>
-        <dt>descricao</dt>
+        <dt>Descricao</dt>
         <dd class="text-justify">Lorem ipsum dolor sit amet,
           consectetur adipisicing elit, sed do eiusmod tempor
           incididunt ut labore et dolore magna aliqua. Ut enim ad minim
