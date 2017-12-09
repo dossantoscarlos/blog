@@ -18,7 +18,7 @@
       <label>Mensagem: </label>
       <textarea name="name" rows="8" cols="80" class='form-control' v-model='mensagem'></textarea>
     </p>
-    <button type='submit' @click='enviarContado' class="btn btn-lg btn-primary">Submit</button>
+    <button type='button' @click='enviarContado' class="btn btn-lg btn-primary">Submit</button>
   </form>
 </template>
 <script>

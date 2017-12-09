@@ -15,12 +15,12 @@
 </template>
 <script>
 export default {
-    name: 'Quiz',
-    data: () => {
-        return {
-            titulo: 'titulo',
-            texto: 'texto'
-        }
+  name: 'Quiz',
+  data: () => {
+    return {
+      titulo: 'titulo',
+      texto: 'texto'
     }
+  }
 }
 </script>

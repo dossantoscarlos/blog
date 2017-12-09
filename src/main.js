@@ -6,13 +6,23 @@ import './firebase'
 import router from './router'
 import store from './store'
 import VueFire from 'vuefire'
+import VueHead from 'vue-head'
+import VueMarkdown from 'vue-markdown'
 Vue.config.productionTip = true
+Vue.config.silent = false
+Vue.config.devtools = true
+Vue.use(VueMarkdown)
+Vue.use(VueHead)
 Vue.use(VueFire)
 /* eslint-disable no-new */
+
 new Vue({
   el: '#content',
   store,
   router,
   template: '<App/>',
-  components: { App }
+  components: {
+    App,
+    VueMarkdown
+  }
 })

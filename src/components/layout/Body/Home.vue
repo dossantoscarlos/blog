@@ -7,10 +7,9 @@
       <router-view />
     </div>
     <div class="footer-central">
-        <div class="container footer-one">
-            <div class='col-xs-12 col-lg-12 text-center'>
-              <h5><b class='color'>{{ text }}</b></h5>
-            </div>
+      <div class="container footer-one">
+        <div class='col-xs-12 col-lg-12 text-center'>
+          <h5><b class='color'>{{ text }}</b></h5>
         </div>
       </div>
     </div>
@@ -19,6 +18,7 @@
 <script>
 import Navbar from '@/components/layout/Menu/Navbar'
 export default {
+  props: ['to'],
   name: 'Home',
   components: {
     Navbar

@@ -1,11 +1,10 @@
 <template>
   <div class="col-lg-12">
     <div class='col-lg-12'>
-      <a :href="url" target="_blank" class="link">
-        <h3 class="text-center col-lg-12">{{ titulo }}</h3>
-      </a>
-      <iframe class="center-block" width="560" height="315" :src="link"
-      frameborder="0" allowfullscreen></iframe>
+        <slot name='titulo'>
+          <a :href="url" target="_blank" class="link"></a>
+        </slot>
+      <slot name='frame'></slot>
     </div>
   </div>
 </template>

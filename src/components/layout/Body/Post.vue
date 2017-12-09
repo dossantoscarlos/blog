@@ -1,14 +1,15 @@
 <template>
   <section class="col-lg-10 col-lg-push-2" >
-    <div v-for='(value, index) in posts'>
+      {{init_post}}
+      <div>
       <header class="col-lg-10 center-block" >
         <figure class="figure">
-          <img src="../../../assets/php.jpg" class="img-fluid img-responsive" alt="...">
-          <figcaption class="figure-caption text-muted"><b>Foto: {{ value['titulo'] }}</b></figcaption>
+          <img src="#" class="img-fluid img-responsive" alt="..." id='banner'>
+          <figcaption class="figure-caption text-muted" ><b id='tituloPagina'>tituloPagina</b></figcaption>
           <div class="text-muted">
-            <b>Dia da postagem: {{ value['dataPostagem'] }} <br/>
-              Hora da postagem: {{ value['hora'] }} <br/>
-              Autor: {{ value['autor'] }}<br/></b>
+            <b id='dataPostagem'>datapostagem</b><br/>
+              <b id='hora'>hora</b><br/>
+              <b id='autor'>autor</b><br/>
           </div>
         </figure>
       </header>
@@ -16,22 +17,29 @@
         <dl>
           <dt class="col-lg-10">
             <h2 class="text-center">
-              <b>{{ maiuscula(value['titulo'])}}</b>
+              <b id='tituloDois'>Titulo dois</b>
               <hr/>
             </h2>
           </dt>
           <dd class="text-justify col-lg-10" >
-            <p v-for='n in 5' class="col-lg-12">
-              {{ value['publicacao'] }}
-            </p>
-            <Video titulo='post' />
+            <div id='publicacao' class="col-lg-12"></div>
+            <V-Video>
+              <slot slot='titulo'>
+                <a href="#" target="_blank" class="btn-link" id='url'>
+                  <h3 class="text-center" id='tituloUrl'>titulo</h3>
+                </a>
+              </slot>
+              <slot slot='frame'>
+              <iframe class="center-block" width="560" height="315" src="https://youtube.com"
+              frameborder="0" allowfullscreen id='link'></iframe>
+            </slot>
+            </v-Video>
         </dd>
         </dl>
       </article>
       <!-- 0800 7212054
       www.paguefacil.com.br
       parcela 177 / 200 / -->
-
       <div class="col-lg-12 " id='voltar'>
         <router-link :to="{ name: 'home.blog'}" class="col-lg-2 col-lg-push-4 btn btn-lg btn-primary">
           Voltar...</router-link>
@@ -41,31 +49,59 @@
 </template>
 <script>
 import { postsRef } from '@/firebase'
-import Video from '@/components/layout/widgets/Video'
+import VVideo from '@/components/layout/widgets/Video'
 export default {
-  props: [ 'titulo', 'id' ],
+  props: [ 'to', 'titulo', 'id' ],
   name: 'Post',
-  components: { Video },
-  data: () => {
-    return {
-      rotulo: 'Heroku',
-      dataPostagem: '233o3',
-      horaPostagem: '2333232',
-      autor: 'casdadada',
-      postagem: 'adadadada'
+  components: { VVideo },
+  computed: {
+    init_post: function () {
+      var varTitle = document.getElementById('title')
+      varTitle.innerHTML = this.maiuscula(this.$props.titulo)
+      var key = this.$props.titulo.replace(/ /g, '-')
+      postsRef.once('value').then(function (snapshot) {
+        if (snapshot.child(key).exists()) {
+          // variaveis que serao consumida pelo firebase
+          const tituloPagina = document.getElementById('tituloPagina')
+          const tituloUrl = document.getElementById('tituloUrl')
+          const tituloDois = document.getElementById('tituloDois')
+          const hora = document.getElementById('hora')
+          const autor = document.getElementById('autor')
+          const publicacao = document.getElementById('publicacao')
+          const link = document.getElementById('link')
+          const url = document.getElementById('url')
+          const dataPostagem = document.getElementById('dataPostagem')
+          const banner = document.getElementById('banner')
+          // fim das variaveis
+          var listaTeste = snapshot.child(key).val()
+          tituloPagina.innerHTML = 'Titulo: ' + listaTeste['titulo'].toUpperCase()
+          tituloUrl.innerHTML = listaTeste['titulo'].toUpperCase()
+          tituloDois.innerHTML = listaTeste['titulo'].toUpperCase()
+          hora.innerHTML = 'Hora: ' + listaTeste['hora']
+          autor.innerHTML = 'Autor: ' + listaTeste['autor']
+          publicacao.innerHTML = listaTeste['publicacao']
+          dataPostagem.innerHTML = 'Data: ' + listaTeste['dataPostagem']
+          url.href = listaTeste['url']
+          link.src = listaTeste['link']
+          banner.src = listaTeste['imgBanner']
+        } else {
+          let protocolo = window.location.protocol
+          let hosts = window.location.host
+          window.location.href = protocolo + '//' + hosts + '/error/404'
+        }
+      }).catch(err => {
+        console.log('Error: ', err.message)
+      })
     }
   },
   firebase: {
     posts: postsRef
   },
   methods: {
-    dbPostagem () {
-      postsRef.orderByChild('2232331').equalTo('heroku').on('value', function (snapshot) {
-        console.log(snapshot.val())
-      })
-    },
     maiuscula (valor) {
-      return valor.toUpperCase()
+      if (valor != null || valor === 'undefined') {
+        return valor.toUpperCase()
+      }
     }
   }
 }

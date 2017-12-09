@@ -31,10 +31,10 @@
                 <router-link :to="{ name: 'home.portifolio'}">Todos os Portifolios</router-link>
               </li>
               <li>
-                Android
+                <router-link :to="{ name: 'home.android' } ">Android</router-link>
               </li>
               <li>
-                Websites
+                <router-link :to="{ name: 'home.websites' }">Websites</router-link>
               </li>
             </ul>
           </li>
@@ -46,8 +46,8 @@
   </nav>
 </template>
 <script>
-  export default {
-    props: ['to'],
-    name: 'Navbar'
-  }
+export default {
+  props: ['to'],
+  name: 'Navbar'
+}
 </script>
